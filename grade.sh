@@ -1,8 +1,8 @@
 # Create your grading script here
-
 rm -rf student-submission
-git clone $1 student-submission
-echo 'Finished cloning'
+git clone --quiet $1 student-submission
+cp TestListExamples.java student-submission
+cd student-submission
 
 # check if the ListExamples.java file matches the given specifications
 if [ -e ListExamples.java ]
@@ -25,12 +25,9 @@ java -cp .:../lib/hamcrest-core-1.3.jar:../lib/junit-4.13.2.jar org.junit.runner
 
 echo "TestListExamples ran"
 cat result.txt
-failure=$(grep -i "Tests that ran:" result.txt)
+failure= $(grep -i "Tests that ran:" result.txt)
 
-if [[ $failure == "" ]]
-then
-  echo "Good Job. All tests passed."
-else
-  echo "tests failed"
-  echo $failure
-fi
+fails=$(head -n 2 result.txt | tail -n 1 | grep -o "E" | wc -l)
+tests=$(head -n 2 result.txt | tail -n 1 | grep -o "\." | wc -l)
+
+echo "$(($tests - $fails))" tests passed out of $tests
