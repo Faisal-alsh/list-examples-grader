@@ -12,15 +12,15 @@ public class TestListExamples {
 
   @Test
   public void testmerge() {
-    List<String> input1 = Arrays.asList("apple", "banana");
-    List<String> input2 = Arrays.asList("orange");
+    List<String> input1 = Arrays.asList("1", "2");
+    List<String> input2 = Arrays.asList("3");
 
-    List<String> result = Arrays.asList("apple", "banana", "orange");
+    List<String> result = Arrays.asList("1", "2", "3");
     assertArrayEquals(result.toArray(), ListExamples.merge(input1, input2).toArray());
 
   }
 
-  @Test(timeout = 1000)
+  @Test(timeout = 100)
   public void test1() {
     List<String> list1 = new ArrayList<>(Arrays.asList("a"));
     List<String> list2 = new ArrayList<>(Arrays.asList("b"));
@@ -28,13 +28,7 @@ public class TestListExamples {
         ListExamples.merge(list1, list2));
   }
 
-  @Test(timeout = 1000)
-  public void test2() {
-    List<String> list1 = new ArrayList<>(Arrays.asList("b"));
-    List<String> list2 = new ArrayList<>(Arrays.asList("a"));
-    assertEquals(new ArrayList<>(Arrays.asList("a", "b")),
-        ListExamples.merge(list1, list2));
-  }
+ 
 
   @Test(timeout = 1000)
   public void test3() {
