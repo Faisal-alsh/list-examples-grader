@@ -25,9 +25,15 @@ java -cp .:../lib/hamcrest-core-1.3.jar:../lib/junit-4.13.2.jar org.junit.runner
 
 echo "TestListExamples ran"
 cat result.txt
-failure= $(grep -i "Tests that ran:" result.txt)
 
-fails=$(head -n 2 result.txt | tail -n 1 | grep -o "E" | wc -l)
+failure=$(grep -i "Failures:" result.txt)
 tests=$(head -n 2 result.txt | tail -n 1 | grep -o "\." | wc -l)
 
-echo "$(($tests - $fails))" tests passed out of $tests
+
+if [[ $failure == "" ]]
+then
+  echo "All tests passed. Good Job."
+else
+  echo "Failed tests:" 
+  echo $failure
+fi
