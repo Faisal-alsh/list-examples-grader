@@ -30,12 +30,13 @@ public class TestListExamples {
 
  
 
-  @Test(timeout = 1000)
+  @Test(timeout = 100)
   public void test3() {
-    List<String> list1 = new ArrayList<>(Arrays.asList("a"));
-    List<String> list2 = new ArrayList<>(Arrays.asList("a"));
-    assertEquals(new ArrayList<>(Arrays.asList("a", "a")),
-        ListExamples.merge(list1, list2));
+    List<String> list1 = new ArrayList<>(Arrays.asList("b"));
+    List<String> list2 = new ArrayList<>(Arrays.asList("b"));
+    List<String> list3 = new ArrayList<>(Arrays.asList("b"));
+    assertEquals(new ArrayList<>(Arrays.asList("b", "b","b")),
+        ListExamples.merge(list1, list2,list3));
 
   }
 
